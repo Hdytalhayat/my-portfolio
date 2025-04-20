@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Teknologi - [Nama Anda]</title>
+    <!-- Impor Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- (Opsional) Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Reset & Dasar */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Font utama */
+            line-height: 1.7;
+            background-color: #1a1a2e;
+            /* Latar belakang gelap utama */
+            color: #e0e0e0;
+            /* Warna teks terang */
+            overflow-x: hidden;
+            /* Mencegah scroll horizontal aneh */
+        }
+
+        /* Variabel Warna (CSS Variables) */
+        :root {
+            --primary-dark: #162447;
+            --secondary-dark: #1f4068;
+            --accent-color: #00f0ff;
+            /* Cyan elektrik */
+            --accent-hover: #00c0cc;
+            --light-text: #e0e0e0;
+            --dark-text: #333;
+            /* Untuk elemen terang jika ada */
+            --card-bg: #2a2a3e;
+            --card-border: #4a4e69;
+            /* Border lebih gelap */
+            --glow-color: rgba(0, 240, 255, 0.5);
+            /* Warna glow untuk hover */
+        }
+
+        /* Utilitas */
+        .container {
+            max-width: 1200px;
+            /* Sedikit lebih lebar */
+            margin: auto;
+            padding: 0 25px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+            /* Font heading */
+            font-weight: 600;
+            margin-bottom: 0.8em;
+            color: var(--light-text);
+            /* Warna heading terang */
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            /* Judul kartu pakai aksen */
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Header & Navigasi */
+        header {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--accent-color);
+            /* Border bawah aksen */
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin-bottom: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header h1 a {
+            color: var(--light-text);
+        }
+
+        header h1 a:hover {
+            color: var(--accent-color);
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 25px;
+        }
+
+        header nav ul li a {
+            color: var(--light-text);
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 400;
+            /* Sedikit lebih tipis */
+        }
+
+        header nav ul li a:hover,
+        header nav ul li a.active {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            /* Teks gelap di atas aksen */
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--light-text);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            /* Untuk pseudo-elements jika perlu */
+            overflow: hidden;
+        }
+
+        /* Optional: subtle background element */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, rgba(0, 240, 255, 0) 70%);
+            transform: rotate(30deg);
+            z-index: 1;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        #hero h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            /* Subtle glow */
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            /* Styling khusus tombol hero */
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--light-text);
+            border: 1px solid var(--card-border);
+            padding: 10px 25px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            /* Font mono untuk tombol */
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            border-color: var(--accent-color);
+            font-weight: 700;
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+
+        /* Projects Section */
+        #projects {
+            background-color: #1f1f30;
+            /* Sedikit beda dari body */
+        }
+
+        #projects h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--light-text);
+            margin-bottom: 50px;
+            /* Jarak lebih besar */
+        }
+
+        .projects-container {
+            display: grid;
+            /* Menggunakan Grid untuk layout */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* Kolom responsif */
+            gap: 35px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            /* Untuk efek tambahan jika perlu */
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-color);
+            /* Shadow lebih kuat + glow */
+            border-color: var(--accent-color);
+        }
+
+        .project-card::after {
+            /* Subtle overlay on hover */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 240, 255, 0) 70%, rgba(0, 240, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            /* Agar tidak mengganggu klik */
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            /* Sedikit lebih tinggi */
+            object-fit: cover;
+            border-bottom: 1px solid var(--card-border);
+            /* Separator tipis */
+            filter: saturate(1.1);
+            /* Sedikit lebih vibrant */
+            transition: filter 0.3s ease;
+        }
+
+        .project-card:hover img {
+            filter: saturate(1.3);
+            /* Lebih vibrant saat hover */
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* H3 sudah di style di atas */
+
+        .project-content p {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #b0b0c0;
+            /* Warna teks deskripsi sedikit redup */
+            font-family: 'Roboto Mono', monospace;
+            /* Font mono untuk deskripsi */
+            line-height: 1.6;
+        }
+
+        .project-links {
+            margin-top: auto;
+            /* Dorong link ke bawah */
+        }
+
+        .project-links a {
+            display: inline-flex;
+            /* Agar ikon dan teks sejajar */
+            align-items: center;
+            gap: 8px;
+            /* Jarak antara ikon dan teks */
+            background-color: var(--secondary-dark);
+            color: var(--light-text);
+            padding: 8px 18px;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-top: 5px;
+            /* Jarak jika wrap */
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+
+        .project-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            border-color: var(--accent-hover);
+        }
+
+        /* Style beda untuk link code (opsional) */
+        .project-links a.code-link {
+            background-color: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--accent-color);
+        }
+
+        .project-links a.code-link:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #a0a0b0;
+            /* Warna teks footer lebih redup */
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        footer h2 {
+            color: var(--light-text);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        footer p a {
+            /* Link email */
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
+        }
+
+        .social-links a {
+            color: #a0a0b0;
+            margin: 0 12px;
+            font-size: 1.8rem;
+            /* Ukuran ikon sosial media */
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            /* Agar transform bekerja */
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2) translateY(-2px);
+        }
+
+        footer .copyright {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            font-family: 'Roboto Mono', monospace;
+            opacity: 0.7;
+        }
+
+
+        /* Scrollbar Styling (Webkit - Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-dark);
+            border-radius: 5px;
+            border: 1px solid var(--card-border);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+
+        /* Responsif */
+        @media (max-width: 992px) {
+
+            /* Grid akan otomatis menyesuaikan, mungkin tidak perlu rule khusus */
+            h2 {
+                font-size: 2rem;
+            }
+
+            #hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header nav {
+                margin-top: 15px;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                /* Izinkan wrap jika terlalu panjang */
+                gap: 5px;
+            }
+
+            header nav ul li {
+                margin: 0 5px;
+            }
+
+            #hero {
+                padding: 80px 0;
+            }
+
+            #hero h2 {
+                font-size: 2.2rem;
+            }
+
+            #hero p {
+                font-size: 1.1rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+                /* Satu kolom di mobile */
+                gap: 30px;
+            }
+
+            .project-card:hover {
+                transform: translateY(-5px) scale(1.01);
+                /* Efek hover lebih halus di mobile */
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            body {
+                line-height: 1.6;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            header nav ul li a {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            #hero {
+                padding: 60px 0;
+            }
+
+            #hero h2 {
+                font-size: 1.8rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+
+            .filter-buttons {
+                margin-bottom: 30px;
+            }
+
+            .filter-btn {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+
+            .project-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .project-content p {
+                font-size: 0.9rem;
+            }
+
+            .project-links a {
+                padding: 7px 15px;
+                font-size: 0.85rem;
+                gap: 6px;
+            }
+
+            footer h2 {
+                font-size: 1.5rem;
+            }
+
+            .social-links a {
+                font-size: 1.6rem;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="#">Hidayatul Hayat</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#projects">Project</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Creative & Technological Developer</h2>
+            <p>Building interactive digital experiences, from immersive games to functional, intuitive web. Focus on
+                clean code and user-centered design.</p>
+            <a href="#projects" class="cta-button">Explore My Project</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="projects">
+            <div class="container">
+                <h2><i class="fas fa-laptop-code"></i> Featured Projects</h2> <!-- Ikon ditambahkan -->
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">:: All</button>
+                    <button class="filter-btn" data-filter="game"><i class="fas fa-gamepad"></i> Games</button>
+                    <button class="filter-btn" data-filter="web"><i class="fas fa-globe"></i> Websites</button>
+                </div>
+
+                <div class="projects-container">
+
+                    <!-- Contoh Kartu Proyek 1 (Game) -->
+                    <div class="project-card" data-category="game">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://img.itch.zone/aW1nLzE5NzQzODc4LmpwZWc=/original/LwwKa%2F.jpeg"
+                            alt="Screenshot Game 1">
+                        <div class="project-content">
+                            <h3>Gerbong 9</h3>
+                            <p>A game with story about a boy experiences strange events. A journey to the truth that
+                                requires players to focus on an anomaly that occurs around! Find the anomaly going to
+                                the end carriage! Play, look, and find!. Built using Unity and C#.</p>
+                            <div class="project-links">
+                                <a href="https://hdytalhayat.itch.io/gerbong-9" target="_blank"><i
+                                        class="fas fa-external-link-alt"></i> See More</a>
+                                <!-- <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="game">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://img.itch.zone/aW1nLzE2NDE1MTEyLnBuZw==/original/XZQWzl.png"
+                            alt="Screenshot Game 2">
+                        <div class="project-content">
+                            <h3>Project Dilemma</h3>
+                            <p>Project Dilemma is a game about making difficult choices. Player is constantly put on
+                                difficult situation with no easy solution. Built using Unity and C#.</p>
+                            <div class="project-links">
+                                <a href="https://jeremy-wowiling.itch.io/project-dilemma" target="_blank"><i
+                                        class="fas fa-external-link-alt"></i> See More</a>
+                                <!-- <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="game">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://img.itch.zone/aW1hZ2UvMzA4Mjk3NC8xODQ0MjUwNS5wbmc=/original/DoId7I.png"
+                            alt="Screenshot Game 2">
+                        <div class="project-content">
+                            <h3>Rescuter</h3>
+                            <p>A casual Tamagotchi-style and Tycoon-Style game where you play as a cat rescuer, with a relaxing, slow-paced, and calming mode. Built using Unity and C#.</p>
+                            <div class="project-links">
+                                <a href="https://ajiana01.itch.io/rescuter" target="_blank"><i
+                                        class="fas fa-external-link-alt"></i> See More</a>
+                                <!-- <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contoh Kartu Proyek 2 (Web) -->
+                    <div class="project-card" data-category="web">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://via.placeholder.com/1000x500/2ecc71/ffffff?text=Website+Screenshot+1+(1000x500)"
+                            alt="Screenshot Website 1">
+                        <div class="project-content">
+                            <h3>[Aplikasi Web Cerdas]</h3>
+                            <p>// Deskripsi: Platform web [Tujuan Aplikasi] dibangun dengan MERN stack. Fitur utama:
+                                [Fitur 1], [Fitur 2]. // Stack: React, Node.js, Express, MongoDB.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Kunjungi</a>
+                                <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contoh Kartu Proyek 3 (Game) -->
+                    <div class="project-card" data-category="game">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://via.placeholder.com/1000x500/f39c12/ffffff?text=Game+Screenshot+2+(1000x500)"
+                            alt="Screenshot Game 2">
+                        <div class="project-content">
+                            <h3>[Pixel Runner X]</h3>
+                            <p>// Deskripsi: Endless runner 2D dengan pixel art style, dibuat pakai [Engine]. High score
+                                system & power-ups. // Stack: [Bahasa Pemrograman].</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-play"></i> Mainkan</a>
+                                <!-- <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contoh Kartu Proyek 4 (Web) -->
+                    <div class="project-card" data-category="web">
+                        <!-- Ganti URL gambar -->
+                        <img src="https://via.placeholder.com/1000x500/e74c3c/ffffff?text=Web+App+Screenshot+(1000x500)"
+                            alt="Screenshot Web App">
+                        <div class="project-content">
+                            <h3>[Dashboard Analitik]</h3>
+                            <p>// Deskripsi: Single Page Application (SPA) visualisasi data interaktif menggunakan
+                                [Framework JS, mis: Vue/Svelte] & D3.js. // Stack: JavaScript, CSS Grid, API.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Buka App</a>
+                                <a href="#" target="_blank" class="code-link"><i class="fas fa-code"></i> Kode</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tambahkan lebih banyak kartu proyek di sini -->
+
+                </div> <!-- Akhir .projects-container -->
+            </div> <!-- Akhir .container -->
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <h2><i class="fas fa-envelope"></i> Hubungi Saya</h2>
+            <p>Tertarik berdiskusi tentang proyek, kolaborasi, atau sekadar menyapa?</p>
+            <p>Email: <a href="mailto:emailanda@contoh.com">emailanda@contoh.com</a></p>
+            <div class="social-links">
+                <!-- Ganti '#' dengan link profil sosial media Anda -->
+                <!-- Pastikan sudah menyertakan Font Awesome -->
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" title="Itch.io (jika ada)"><i class="fab fa-itch-io"></i></a>
+                <!-- Tambahkan link sosial media lain jika perlu -->
+            </div>
+            <p class="copyright">&copy; <span id="year"></span> [Nama Anda] // Kode dengan <i class="fas fa-heart"
+                    style="color: var(--accent-color);"></i> & <i class="fas fa-coffee"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Smooth Scrolling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.hash !== "" && document.querySelector(this.hash)) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.hash);
+                    if (targetElement) {
+                        // Offset sedikit untuk memperhitungkan header sticky
+                        const headerOffset = document.querySelector('header')?.offsetHeight || 70; // Ambil tinggi header
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+
+                        // Update active link di navigasi (opsional)
+                        document.querySelectorAll('header nav a').forEach(navLink => navLink.classList.remove('active'));
+                        this.classList.add('active'); // Beri style active pada link yg diklik
+                    }
+                }
+            });
+        });
+
+        // --- Project Filtering ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectsContainer = document.querySelector('.projects-container'); // Untuk animasi
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.getAttribute('data-filter');
+
+                // Animasi fade out sebelum filter
+                projectsContainer.style.opacity = '0';
+
+                setTimeout(() => {
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || filter === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    // Animasi fade in setelah filter
+                    projectsContainer.style.opacity = '1';
+                }, 300); // Sesuaikan durasi dengan transisi CSS jika perlu
+            });
+        });
+
+        // --- Update Tahun di Footer ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Set Active Nav Link on Scroll (Opsional) ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLi = document.querySelectorAll('header nav ul li a');
+        const headerHeight = document.querySelector('header')?.offsetHeight || 70;
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerHeight - 50; // Beri sedikit offset
+                // Periksa apakah section ada di viewport
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            // Jika scroll di paling atas, set 'hero' sebagai aktif
+            if (pageYOffset < headerHeight) {
+                current = 'hero';
+            }
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                }
+            });
+            // Jika tidak ada section aktif (misalnya di footer), hapus semua active class
+            if (!current && pageYOffset > sections[sections.length - 1].offsetTop) {
+                navLi.forEach(a => a.classList.remove('active'));
+                // Optionally highlight 'Contact' if scrolled to footer
+                const contactLink = document.querySelector('header nav ul li a[href="#footer"]');
+                if (contactLink && (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 50) { // Cek jika dekat bawah
+                    contactLink.classList.add('active');
+                }
+            } else if (!current && pageYOffset < sections[0].offsetTop - headerHeight) {
+                // Highlight home if scrolled above first section
+                const homeLink = document.querySelector('header nav ul li a[href="#hero"]');
+                if (homeLink) homeLink.classList.add('active');
+            }
+        });
+
+        // Tambahkan transisi ke container project untuk animasi opacity
+        if (projectsContainer) {
+            projectsContainer.style.transition = 'opacity 0.3s ease-in-out';
+        }
+
+    </script>
+
+</body>
+
+</html>
